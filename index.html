@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CureLab Oncology</title>
+<meta name="description" content="CureLab Oncology is a clinical-stage biotechnology company developing Elenagen, a DNA plasmid encoding p62/SQSTM1, to make standard cancer therapies work better.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --mist:#F1F4EF;
+  --line:#DCE3D8;
+  --ink:#17201A;
+  --ink-2:#4A554D;
+  --green:#55A23D;     /* CureLab logo green */
+  --green-ink:#3F7F2C; /* for text on white, AA */
+  --leaf:#97CB8F;      /* logo light green */
+  --forest:#16301B;
+  --max:1240px;
+  --gut:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--white);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;font-stretch:100%;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+
+/* Display type: the extended cut echoes the CureLab logotype */
+.disp{font-stretch:125%;font-weight:600;letter-spacing:-.02em;line-height:1.05}
+h2.disp{font-size:clamp(30px,4.2vw,52px)}
+.lede{font-size:clamp(18px,1.6vw,21px);color:var(--ink-2);max-width:60ch}
+p{max-width:68ch}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.scrolled{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.nav img{height:50px;width:auto}
+.nav ul{display:flex;gap:30px;list-style:none;font-size:15px}
+.nav ul a{text-decoration:none;color:var(--ink-2)}
+.nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 15px/1 "Archivo";font-stretch:110%;text-decoration:none;padding:14px 22px;border-radius:999px;background:var(--ink);color:#fff;border:0;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--green-ink)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.menu-btn{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:5px auto}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding:clamp(56px,8vw,112px) 0 clamp(56px,7vw,96px)}
+.hero-mark{position:absolute;right:-12vw;top:-18vw;width:62vw;max-width:900px;aspect-ratio:1;pointer-events:none;opacity:.9}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(32px,5vw,80px);align-items:center}
+.hero h1{font-size:clamp(38px,4.5vw,66px)}
+.hero .lede{margin-top:28px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.stage{display:inline-block;font-size:14px;color:var(--green-ink);font-weight:600;margin-bottom:22px;padding:6px 12px;border-radius:999px;background:var(--mist)}
+
+/* PFS chart */
+.pfs{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:28px 28px 22px;box-shadow:0 30px 60px -40px rgba(22,48,27,.35)}
+.pfs h3{font-size:15px;font-weight:600;font-stretch:110%}
+.pfs .sub{font-size:13.5px;color:var(--ink-2);margin-top:2px}
+.bars{margin-top:26px;display:grid;gap:20px}
+.bar-row .lab{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px;gap:12px}
+.bar-row .val{font-stretch:125%;font-weight:700;font-size:28px;line-height:1}
+.bar-row .val small{font-size:13px;font-weight:500;font-stretch:100%;color:var(--ink-2);margin-left:4px}
+.track{height:16px;border-radius:99px;background:var(--mist);overflow:hidden}
+.fill{height:100%;border-radius:99px;width:0;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.fill.a{background:#B7BFB9}
+.fill.b{background:var(--green)}
+.axis{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2);margin-top:10px;font-variant-numeric:tabular-nums}
+.pfs .foot{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+.pfs .foot a{color:var(--green-ink)}
+
+/* Proof strip */
+.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.proof .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.proof div.cell{padding:28px 24px 28px 0}
+.proof div.cell+div.cell{padding-left:24px;border-left:1px solid var(--line)}
+.proof b{display:block;font-stretch:125%;font-weight:700;font-size:clamp(24px,2.2vw,30px);line-height:1.15;margin-bottom:4px}
+.proof span{font-size:14.5px;color:var(--ink-2)}
+
+section{padding:clamp(72px,9vw,128px) 0;scroll-margin-top:76px}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+
+/* Science */
+.sci{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.plasmid{width:100%;max-width:480px;margin:0 auto}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.actions article{background:#fff;padding:28px}
+.actions h3{font-size:19px;font-stretch:115%;font-weight:600;line-height:1.25;margin-bottom:10px}
+.actions p{font-size:15.5px;color:var(--ink-2)}
+.actions svg{width:30px;height:30px;margin-bottom:18px;color:var(--green)}
+
+/* Pipeline */
+#pipeline{background:var(--mist)}
+.pipe{background:#fff;border-radius:20px;border:1px solid var(--line);overflow:hidden}
+.prow{display:grid;grid-template-columns:minmax(220px,1.3fr) 2.4fr minmax(160px,.9fr);align-items:center;gap:24px;padding:22px 28px;border-top:1px solid var(--line)}
+.prow:first-child{border-top:0}
+.prow.th{background:#FAFBF9;font-size:13px;color:var(--ink-2);padding-top:14px;padding-bottom:14px}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);font-size:13px}
+.ind b{display:block;font-weight:600;font-size:16px}
+.ind span{font-size:14px;color:var(--ink-2)}
+.ptrack{position:relative;height:12px;border-radius:99px;background:repeating-linear-gradient(90deg,var(--mist) 0 calc(25% - 2px),#fff calc(25% - 2px) 25%)}
+.pfill{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--green)}
+.pfill.plan{background:repeating-linear-gradient(135deg,var(--leaf) 0 6px,#C4E2BF 6px 12px)}
+.pstat{font-size:14px;color:var(--ink-2)}
+.pstat b{color:var(--ink);font-weight:600}
+.legend{display:flex;gap:22px;margin-top:18px;font-size:13.5px;color:var(--ink-2)}
+.legend i{display:inline-block;width:22px;height:10px;border-radius:9px;background:var(--green);margin-right:8px;vertical-align:middle}
+.legend i.plan{background:repeating-linear-gradient(135deg,var(--leaf) 0 6px,#C4E2BF 6px 12px)}
+
+/* Evidence */
+.ev{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px)}
+.pubs{list-style:none;border-top:1px solid var(--line)}
+.pubs li{border-bottom:1px solid var(--line)}
+.pubs a{display:grid;grid-template-columns:1fr auto;gap:16px;padding:20px 0;text-decoration:none}
+.pubs a:hover .t{color:var(--green-ink)}
+.pubs .t{font-weight:500;font-size:16.5px;line-height:1.4}
+.pubs .j{display:block;font-size:14px;color:var(--ink-2);margin-top:4px}
+.pubs svg{width:18px;height:18px;margin-top:4px;color:var(--ink-2)}
+.case{align-self:start;background:var(--mist);border-radius:20px;padding:clamp(24px,3vw,40px)}
+.case h3{font-size:22px;font-stretch:115%;font-weight:600;margin-bottom:14px;line-height:1.25}
+.case dl{display:grid;grid-template-columns:auto 1fr;gap:12px 20px;margin-top:22px;font-size:15.5px}
+.case dt{font-weight:600}
+.case dd{color:var(--ink-2)}
+
+/* Platform band */
+.band{background:var(--forest);color:#E8EFE6}
+.band h2{color:#fff}
+.band .lede{color:#B8C7B6}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);border-radius:18px;overflow:hidden;margin-top:56px}
+.facts div{background:var(--forest);padding:30px}
+.facts b{display:block;font-stretch:125%;font-weight:700;font-size:clamp(30px,3vw,44px);color:var(--leaf);line-height:1.1;margin-bottom:10px}
+.facts span{font-size:15.5px;color:#C9D6C7}
+.proof b .count,.facts b .count{font:inherit;color:inherit;font-variant-numeric:tabular-nums}
+.countries{margin-top:40px;font-size:14px;color:#9FB29D;line-height:1.9;max-width:none}
+.countries b{color:#E8EFE6;font-weight:600}
+
+/* Team */
+.people{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,28px)}
+.person .ph{aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:var(--mist)}
+.person img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:grayscale(1) contrast(1.05) brightness(1.04);mix-blend-mode:multiply}
+.person h3{font-size:18px;font-weight:600;margin-top:16px;font-stretch:110%}
+.person .role{font-size:14.5px;color:var(--green-ink);font-weight:500}
+.person p{font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.roster{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;margin-top:56px;border-top:1px solid var(--line)}
+.roster h4{font-size:14px;color:var(--ink-2);font-weight:500;padding:22px 0 8px}
+.roster ul{list-style:none}
+.roster li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.roster li span{display:block;font-size:13.5px;color:var(--ink-2)}
+
+/* News */
+#news{background:var(--mist)}
+.news{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.news a{display:flex;flex-direction:column;gap:14px;background:#fff;border-radius:16px;padding:24px;text-decoration:none;border:1px solid var(--line);min-height:220px;transition:border-color .2s}
+.news a:hover{border-color:var(--green)}
+.news time{font-size:13.5px;color:var(--ink-2)}
+.news h3{font-size:16.5px;font-weight:600;line-height:1.35}
+
+/* Partner */
+.partner{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,80px);align-items:start}
+.paths{list-style:none;border-top:1px solid var(--line)}
+.paths li{padding:22px 0;border-bottom:1px solid var(--line)}
+.paths b{display:block;font-size:18px;font-weight:600;font-stretch:110%}
+.paths span{color:var(--ink-2);font-size:15.5px}
+.contact{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+
+footer{border-top:1px solid var(--line);padding:48px 0 40px;font-size:14px;color:var(--ink-2)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center}
+footer img{height:34px;width:auto}
+footer nav{display:flex;flex-wrap:wrap;gap:22px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+.fine{width:100%;font-size:12.5px;color:#7A857C;max-width:none}
+
+
+/* ===== Motion layer ===== */
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--green);transform-origin:0 50%;transform:scaleX(0)}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln>span{display:block;transform:translateY(105%);transition:transform 1s cubic-bezier(.2,.75,.15,1)}
+.hero h1 .ln:nth-child(2)>span{transition-delay:.09s}
+.hero h1 .ln:nth-child(3)>span{transition-delay:.18s}
+.ready .hero h1 .ln>span{transform:none}
+.hero-copy .stage,.hero-copy .lede,.hero-copy .ctas{opacity:0;transform:translateY(14px);transition:opacity .8s .45s,transform .8s .45s cubic-bezier(.2,.75,.15,1)}
+.ready .hero-copy .stage,.ready .hero-copy .lede,.ready .hero-copy .ctas{opacity:1;transform:none}
+.ready .hero-copy .stage{transition-delay:0s}
+
+.hero-visual{position:relative;min-height:640px}
+.helix-wrap{position:absolute;inset:-60px -80px auto -40px;height:600px}
+.helix-wrap canvas{width:100%;height:100%;display:block}
+.helix-tag{position:absolute;left:0;top:0;pointer-events:none;font-size:13px;line-height:1.3;background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 11px;box-shadow:0 10px 24px -14px rgba(22,48,27,.4);opacity:0;transition:opacity .6s}
+.helix-tag b{display:block;font-weight:600;color:var(--green-ink)}
+.helix-tag span{color:var(--ink-2)}
+.hero-visual .pfs{position:absolute;left:0;right:0;bottom:0;backdrop-filter:blur(6px);background:rgba(255,255,255,.88)}
+.bars{position:relative}
+.track-w{position:relative}
+.delta{position:absolute;left:35%;width:55%;top:0;height:16px;opacity:0;transition:opacity .6s}
+.delta .br{position:absolute;inset:0;border:1.5px dashed var(--green);border-left:0;border-radius:0 99px 99px 0;clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.2,.7,.2,1)}
+.delta b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.85);white-space:nowrap;font-size:12.5px;font-weight:600;color:var(--green-ink);background:#fff;padding:2px 9px;border-radius:99px;box-shadow:0 0 0 1px var(--leaf);opacity:0;transition:opacity .4s .6s,transform .5s .6s cubic-bezier(.3,1.6,.5,1)}
+.delta.on{opacity:1}.delta.on .br{clip-path:inset(0 0 0 0)}.delta.on b{opacity:1;transform:translate(-50%,-50%)}
+
+.sim{position:relative;background:var(--mist);border-radius:22px;overflow:hidden;border:1px solid var(--line)}
+.sim canvas{display:block;width:100%;aspect-ratio:1/1;cursor:crosshair}
+.sim-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:14px 18px;border-top:1px solid var(--line);background:#fff;font-size:13px;color:var(--ink-2)}
+.key i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.key i.ring{box-shadow:inset 0 0 0 2px var(--green-ink);background:#E6F2E2}
+.replay{margin-left:auto;font:600 13px "Archivo";background:none;border:1.5px solid var(--ink);border-radius:99px;padding:6px 14px;cursor:pointer}
+.replay:hover{background:var(--ink);color:#fff}
+.sim-note{position:absolute;left:18px;top:14px;font-size:12px;color:var(--ink-2);background:rgba(255,255,255,.75);padding:3px 9px;border-radius:99px}
+.fx{position:relative;display:block;background:#fff;padding:28px;transition:background .5s}
+.fx .h{display:block;font-size:19px;font-stretch:115%;font-weight:600;line-height:1.25;margin-bottom:10px}
+.fx .d{display:block;font-size:15.5px;color:var(--ink-2)}
+.fx::before{content:"";position:absolute;left:0;top:28px;bottom:28px;width:3px;border-radius:3px;background:var(--green);transform:scaleY(0);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.fx.lit{background:#F6FAF4}.fx.lit::before{transform:none}
+
+.map-wrap{position:relative;margin-top:48px}
+.map-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:18px}
+.seg{font:600 14px "Archivo";color:#C9D6C7;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:9px 16px;cursor:pointer;transition:all .25s}
+.seg.on{background:var(--leaf);border-color:var(--leaf);color:var(--forest)}
+.map-key{margin-left:auto;font-size:13px;color:#9FB29D;display:flex;align-items:center;gap:8px}
+.map-key i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--leaf)}
+.map-key i.pend{background:transparent;box-shadow:inset 0 0 0 1.5px var(--leaf);margin-left:10px}
+#map{display:block;width:100%;aspect-ratio:2.3/1}
+.map-tip{position:absolute;pointer-events:none;background:#fff;color:var(--ink);font-size:13px;font-weight:600;padding:5px 10px;border-radius:8px;opacity:0;transform:translate(-50%,-140%);transition:opacity .15s;white-space:nowrap}
+.person img{transition:filter .5s}
+.person:hover img{filter:none;mix-blend-mode:normal}
+.pfill{transform-origin:0 50%;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.75,.15,1)}
+.pipe.in .pfill{transform:none}
+.pipe.in .prow:nth-child(3) .pfill{transition-delay:.08s}.pipe.in .prow:nth-child(4) .pfill{transition-delay:.16s}.pipe.in .prow:nth-child(5) .pfill{transition-delay:.24s}.pipe.in .prow:nth-child(6) .pfill{transition-delay:.32s}.pipe.in .prow:nth-child(7) .pfill{transition-delay:.4s}
+.pfill.plan{transition-delay:.7s!important}
+
+@media (max-width:1020px){
+  .hero-visual{min-height:0}
+  .helix-wrap{position:relative;inset:auto;height:340px;margin:-10px -20px 0}
+  .hero-visual .pfs{position:relative;margin-top:-50px}
+
+  .nav ul,.nav .btn{display:none}
+  .menu-btn{display:block}
+  header.open .nav ul{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:8px var(--gut) 16px}
+  header.open .nav ul a{display:block;padding:12px 0;font-size:17px}
+  .hero-grid,.sci,.ev,.partner,.head{grid-template-columns:1fr}
+  .proof .wrap{grid-template-columns:1fr 1fr}
+  .proof div.cell:nth-child(3){padding-left:0;border-left:0}
+  .proof div.cell:nth-child(n+3){border-top:1px solid var(--line)}
+  .people,.news{grid-template-columns:1fr 1fr}
+  .facts{grid-template-columns:1fr}
+  .roster{grid-template-columns:1fr}
+  .prow{grid-template-columns:1fr;gap:12px}
+  .prow.th{display:none}
+  .ptrack-wrap .phases{display:grid}
+}
+@media (min-width:1021px){.ptrack-wrap .phases{display:none}}
+@media (max-width:560px){
+  .actions{grid-template-columns:1fr}
+  .people{grid-template-columns:1fr 1fr;gap:14px}
+  .person p{display:none}
+  .news{grid-template-columns:1fr}
+  .news a{min-height:0}
+  .proof .wrap{grid-template-columns:1fr}
+  .proof div.cell,.proof div.cell+div.cell{padding:20px 0;border-left:0}
+  .proof div.cell+div.cell{border-top:1px solid var(--line)}
+  .pfs{padding:22px 18px 18px}
+  .hero-mark{width:120vw;right:-50vw;top:-40vw;opacity:.5}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}html{scroll-behavior:auto}.hero h1 .ln>span,.hero-copy .stage,.hero-copy .lede,.hero-copy .ctas{transform:none;opacity:1}.pfill{transform:none}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="progress" id="prog"></div>
+  <div class="wrap nav">
+    <a href="#top" aria-label="CureLab Oncology home"><img src="assets/img/logo.png" alt="CureLab Oncology" width="900" height="294"></a>
+    <ul id="menu">
+      <li><a href="#science">Science</a></li>
+      <li><a href="#pipeline">Pipeline</a></li>
+      <li><a href="#evidence">Clinical data</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#news">News</a></li>
+    </ul>
+    <a class="btn" href="#partner">Investors &amp; partners</a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" style="padding-top:clamp(56px,8vw,112px)">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="stage">Clinical-stage immuno-oncology · Boston, MA</span>
+      <h1 class="disp" aria-label="Making standard cancer therapy work better."><span class="ln"><span>Making standard</span></span><span class="ln"><span>cancer therapy</span></span><span class="ln"><span>work better.</span></span></h1>
+      <p class="lede">Elenagen is a DNA plasmid encoding p62/SQSTM1. Given alongside chemotherapy, it reshapes the tumor microenvironment, dampens chronic inflammation and strengthens the immune response against the tumor.</p>
+      <div class="ctas">
+        <a class="btn" href="#evidence">See the clinical data</a>
+        <a class="btn ghost" href="#science">How Elenagen works</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+    <div class="helix-wrap" aria-hidden="true">
+      <canvas id="helix"></canvas>
+      <div class="helix-tag" id="helixTag"><b>p62/SQSTM1</b><span>gene insert</span></div>
+    </div>
+    <figure class="pfs" aria-labelledby="pfs-t">
+      <h3 id="pfs-t">Median progression-free survival</h3>
+      <p class="sub">Randomized trial, platinum-resistant ovarian cancer</p>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="lab"><span>Gemcitabine alone</span><span class="val"><span class="count" data-to="2.8" data-dec="1">2.8</span><small>mo</small></span></div>
+          <div class="track-w"><div class="track"><div class="fill a" data-w="35"></div></div><div class="delta" aria-hidden="true"><span class="br"></span><b>+4.4 months</b></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="lab"><span>Gemcitabine + Elenagen</span><span class="val"><span class="count" data-to="7.2" data-dec="1">7.2</span><small>mo</small></span></div>
+          <div class="track"><div class="fill b" data-w="90"></div></div>
+        </div>
+              </div>
+      <div class="axis" aria-hidden="true"><span>0</span><span>2</span><span>4</span><span>6</span><span>8 months</span></div>
+      <figcaption class="foot">
+        <span>n = 40 · log-rank p = 0.03</span>
+        <span>No serious adverse events related to Elenagen</span>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/38410116/" target="_blank" rel="noopener">Frontiers in Oncology, 2024</a>
+      </figcaption>
+    </figure>
+    </div>
+  </div>
+</section>
+
+<div class="proof">
+  <div class="wrap">
+    <div class="cell"><b>Phase I/IIa</b><span>completed in 27 patients across 4 clinical centers</span></div>
+    <div class="cell"><b>Phase II</b><span>randomized data published; US Phase II in preparation</span></div>
+    <div class="cell"><b>23</b><span>jurisdictions with granted oncology patents, including the US</span></div>
+    <div class="cell"><b>Only p62</b><span>the only p62-based anti-cancer biologic in development</span></div>
+  </div>
+</div>
+
+<!-- SCIENCE -->
+<section id="science">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="disp">One plasmid. Four effects on the tumor and its surroundings.</h2>
+      <p class="lede">Elenagen is supercoiled circular DNA that delivers the gene for p62/SQSTM1. Rather than competing with existing treatments, it is designed to be combined with them: chemotherapy, radiotherapy and immunotherapy.</p>
+    </div>
+    <div class="sci">
+      <figure class="sim">
+        <canvas id="tme" role="img" aria-label="Illustration of a tumor and its microenvironment. Each Elenagen effect can be switched on to see how it changes the scene."></canvas>
+        <figcaption class="sim-bar">
+          <span class="key"><i style="background:#E8A9A0"></i>Tumor cells</span><span class="key"><i style="background:#55A23D"></i>Stroma</span><span class="key"><i style="background:#E4572E"></i>Inflammatory signals</span><span class="key"><i class="ring"></i>T cells</span>
+          <button class="replay" id="replay" type="button">Replay</button>
+        </figcaption>
+        <p class="sim-note">Illustration of the mechanism, not trial data.</p>
+      </figure>
+      <div class="fx-col"><div class="actions">
+        <div class="fx" data-fx="grade">
+          <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 24 L13 15 L18 20 L26 6"/><path d="M20 6h6v6"/></svg>
+          <span class="h">Reduces tumor grade</span>
+          <span class="d">In spontaneous canine mammary cancers, tumor grade fell in 5 of 6 animals treated.</span>
+        </div>
+        <div class="fx" data-fx="stroma">
+          <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2"><circle cx="15" cy="15" r="5"/><circle cx="15" cy="15" r="11" stroke-dasharray="3 4"/></svg>
+          <span class="h">Changes the tumor microenvironment</span>
+          <span class="d">Raises stromal alpha-SMA and collagen 3, both linked to a better prognosis.</span>
+        </div>
+        <div class="fx" data-fx="inflam">
+          <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 4c5 6 8 10 8 14a8 8 0 0 1-16 0c0-4 3-8 8-14z"/><path d="M10 20h10"/></svg>
+          <span class="h">Dampens chronic inflammation</span>
+          <span class="d">Inhibits the systemic chronic inflammation that drives cancer initiation and progression.</span>
+        </div>
+        <div class="fx" data-fx="immune">
+          <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3l10 4v7c0 7-4.5 11-10 13C9.5 25 5 21 5 14V7z"/><path d="M10.5 15l3 3 6-6"/></svg>
+          <span class="h">Strengthens the anti-tumor immune response</span>
+          <span class="d">Counters the immune suppression in the tumor, enhancing chemo- and immunotherapies.</span>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section id="pipeline">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="disp">Pipeline</h2>
+      <p class="lede">Elenagen is being developed as an add-on to standard of care in solid tumors where current options run out fastest.</p>
+    </div>
+    <div class="pipe" role="table" aria-label="Elenagen development pipeline">
+      <div class="prow th" role="row">
+        <span role="columnheader">Indication</span>
+        <div class="phases" role="columnheader"><span>Preclinical</span><span>Phase I</span><span>Phase II</span><span>Phase III</span></div>
+        <span role="columnheader">Status</span>
+      </div>
+
+      <div class="prow" role="row">
+        <div class="ind" role="cell"><b>Platinum-resistant ovarian cancer</b><span>with gemcitabine</span></div>
+        <div class="ptrack-wrap" role="cell"><div class="ptrack"><div class="pfill" style="width:75%"></div></div></div>
+        <div class="pstat" role="cell"><b>Phase II completed</b><br>randomized, published 2024</div>
+      </div>
+      <div class="prow" role="row">
+        <div class="ind" role="cell"><b>Advanced solid tumors</b><span>melanoma, breast, ovary, lung, renal</span></div>
+        <div class="ptrack-wrap" role="cell"><div class="ptrack"><div class="pfill" style="width:56%"></div></div></div>
+        <div class="pstat" role="cell"><b>Phase I/IIa completed</b><br>27 patients, 4 centers</div>
+      </div>
+      <div class="prow" role="row">
+        <div class="ind" role="cell"><b>Triple-negative breast cancer</b><span>with standard chemotherapy</span></div>
+        <div class="ptrack-wrap" role="cell"><div class="ptrack"><div class="pfill" style="width:62%"></div><div class="pfill plan" style="left:62%;width:13%;border-radius:0 99px 99px 0"></div></div></div>
+        <div class="pstat" role="cell"><b>Phase II</b><br>ex-US; US trial in preparation</div>
+      </div>
+      <div class="prow" role="row">
+        <div class="ind" role="cell"><b>Inoperable stomach and pancreatic cancer</b><span>with standard of care</span></div>
+        <div class="ptrack-wrap" role="cell"><div class="ptrack"><div class="pfill" style="width:50%"></div><div class="pfill plan" style="left:50%;width:25%;border-radius:0 99px 99px 0"></div></div></div>
+        <div class="pstat" role="cell"><b>Phase II</b><br>ex-US, randomized</div>
+      </div>
+      <div class="prow" role="row">
+        <div class="ind" role="cell"><b>Glioblastoma, prostate, renal, uterine, melanoma</b><span>metastatic and resistant disease</span></div>
+        <div class="ptrack-wrap" role="cell"><div class="ptrack"><div class="pfill" style="width:25%"></div><div class="pfill plan" style="left:25%;width:25%;border-radius:0 99px 99px 0"></div></div></div>
+        <div class="pstat" role="cell"><b>Planned</b><br>future international trials</div>
+      </div>
+      <div class="prow" role="row">
+        <div class="ind" role="cell"><b>Veterinary oncology</b><span>dogs and cats with spontaneous tumors</span></div>
+        <div class="ptrack-wrap" role="cell"><div class="ptrack"><div class="pfill" style="width:40%"></div></div></div>
+        <div class="pstat" role="cell"><b>Pilot studies</b><br>comparative medicine program</div>
+      </div>
+    </div>
+    <div class="legend"><span><i></i>Completed or under way</span><span><i class="plan"></i>In preparation</span></div>
+  </div>
+</section>
+
+<!-- EVIDENCE -->
+<section id="evidence">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="disp">Peer-reviewed clinical evidence</h2>
+      <p class="lede">Patients in our first trials had failed every available treatment and their disease was actively progressing. The aim was to stop that progression, and to make their tumors respond to chemotherapy again.</p>
+    </div>
+    <div class="ev">
+      <ul class="pubs">
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/38410116/" target="_blank" rel="noopener"><span><span class="t">Clinical efficacy of Elenagen with gemcitabine in platinum-resistant ovarian cancer: a randomized controlled trial</span><span class="j">Frontiers in Oncology, 2024 · NCT05979298</span></span><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9v9M15 3L3 15"/></svg></a></li>
+        <li><a href="http://www.oncotarget.com/index.php?journal=oncotarget&amp;page=article&amp;op=view&amp;path%5B%5D=16574" target="_blank" rel="noopener"><span><span class="t">Safety and efficacy of p62 DNA vaccine Elenagen in a first-in-human trial in patients with advanced solid tumors</span><span class="j">Oncotarget</span></span><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9v9M15 3L3 15"/></svg></a></li>
+        <li><a href="https://www.aging-us.com/article/102486/text" target="_blank" rel="noopener"><span><span class="t">P62-DNA-encoding plasmid reverts tumor grade, changes tumor stroma, and enhances anticancer immunity</span><span class="j">Aging</span></span><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9v9M15 3L3 15"/></svg></a></li>
+        <li><a href="http://www.oncotarget.com/index.php?journal=oncotarget&amp;page=article&amp;op=view&amp;path%5B%5D=1397" target="_blank" rel="noopener"><span><span class="t">Broad-spectrum anti-tumor and anti-metastatic DNA vaccine based on a p62-encoding vector</span><span class="j">Oncotarget</span></span><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9v9M15 3L3 15"/></svg></a></li>
+        <li><a href="https://www.curelaboncology.com/our-publication/"><span><span class="t">All 14 publications</span><span class="j">Including anti-inflammatory, metabolic and veterinary studies</span></span><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9v9M15 3L3 15"/></svg></a></li>
+      </ul>
+      <aside class="case">
+        <h3>Case study: chemo-resistant triple-negative breast cancer</h3>
+        <p style="color:var(--ink-2);font-size:15.5px">A 48-year-old patient had been moved to hospice after her disease kept progressing through 21 courses of chemotherapy. She then received Elenagen weekly alongside CMF chemotherapy.</p>
+        <dl>
+          <dt>Tumor</dt><dd>Partial regression of 33%</dd>
+          <dt>Progression</dt><dd>19 weeks progression-free</dd>
+          <dt>Daily life</dt><dd>Less pain medication, full return of cognition, discharged from hospice to home</dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM / CMC / IP -->
+<section class="band">
+  <div class="wrap">
+    <div class="head" style="margin-bottom:0">
+      <h2 class="disp">Built to scale, protected worldwide</h2>
+      <p class="lede">Plasmids are simple to make and control. Elenagen is manufactured by Aldevron in Fargo, North Dakota, a specialist plasmid manufacturer, and is stable for more than three years frozen.</p>
+    </div>
+    <div class="facts">
+      <div><b>23</b><span>jurisdictions with granted oncology patents</span></div>
+      <div><b>18</b><span>jurisdictions with granted anti-inflammation patents</span></div>
+      <div><b>3+ years</b><span>frozen shelf life, given as a simple intramuscular injection</span></div>
+    </div>
+    <div class="map-wrap">
+      <div class="map-ctl" role="group" aria-label="Patent family">
+        <button type="button" class="seg on" data-fam="onc" aria-pressed="true">Oncology patents</button>
+        <button type="button" class="seg" data-fam="inf" aria-pressed="false">Anti-inflammation patents</button>
+        <span class="map-key"><i></i>Granted <i class="pend"></i>Pending</span>
+      </div>
+      <canvas id="map" aria-hidden="true"></canvas>
+      <div class="map-tip" id="mapTip"></div>
+    </div>
+    <p class="countries"><b>Oncology patents granted:</b> USA, UK, Germany, France, Italy, Spain, Netherlands, Belgium, Ireland, Luxembourg, Switzerland, Liechtenstein, Japan, South Korea, Singapore, Hong Kong, India, Australia, Canada, Mexico, Chile, Russia, Belarus. Applications pending in Brazil and the US.</p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="disp">Leadership</h2>
+      <p class="lede">Drug developers and scientists with decades of work in oncology, from bench to bedside, advised by clinical leaders from across the industry.</p>
+    </div>
+    <div class="people">
+      <div class="person"><div class="ph"><img src="assets/img/shneider.jpg" alt="Alexander Shneider" loading="lazy" style="object-position:50% 8%"></div><h3>Alexander Shneider, PhD</h3><div class="role">Founder, CEO and Chairman</div><p>25+ years in biotech, from concept to market authorization. Senior Research Fellow in molecular biology, Ariel University.</p></div>
+      <div class="person"><div class="ph"><img src="assets/img/gabai.jpg" alt="Vlad Gabai" loading="lazy"></div><h3>Vlad Gabai, PhD</h3><div class="role">VP of R&amp;D</div><p>30+ years developing anti-cancer drugs. 80+ papers, formerly at Boston University and Boston Biomedical Research Institute.</p></div>
+      <div class="person"><div class="ph"><img src="assets/img/legg.jpg" alt="Charles Legg" loading="lazy"></div><h3>Charles Legg</h3><div class="role">COO</div><p>20+ years across biotech and pharma, including Shire and gene therapy startup Solid. Part of two $100M+ IPOs.</p></div>
+      <div class="person"><div class="ph"><img src="assets/img/meriin.jpg" alt="Anatoli Meriin" loading="lazy"></div><h3>Anatoli Meriin, PhD</h3><div class="role">Director</div><p>30+ years in biochemistry and cell biology. 40+ papers, formerly at Boston University.</p></div>
+    </div>
+
+    <div class="roster">
+      <div>
+        <h4>Scientific Advisory Board</h4>
+        <ul>
+          <li>David Shulkin, MD<span>9th US Secretary of Veterans Affairs</span></li>
+          <li>Markus Puhlmann, MD, MBA<span>CMO, Perspective Therapeutics</span></li>
+          <li>Konstantinos Xynos, MD, MBA<span>CMO, Replimune</span></li>
+          <li>Paul Woodard, MD<span>CMO, Soley Therapeutics</span></li>
+          <li>Bruce N. Cronstein, MD<span>NYU Grossman School of Medicine</span></li>
+          <li>Kim Lewis<span>Northeastern University</span></li>
+          <li>Michael Sherman<span>Boston University School of Medicine</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Board of Directors</h4>
+        <ul>
+          <li>Alexander Shneider, PhD<span>Chairman</span></li>
+          <li>Michael Burns<span>Independent Director; formerly Guggenheim Partners, TL Ventures</span></li>
+          <li>Andrew Morozov, PhD, MBA<span>Independent Director; 12 exits as an investor</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Team</h4>
+        <ul>
+          <li>Ilya Lapshin, JD<span>General Counsel</span></li>
+          <li>Ricarda Cramer, MBA<span>Business Development, EU</span></li>
+          <li>Jihad A. Fakhreddine<span>Business Development, GCC</span></li>
+          <li>Vlad Zayets-Volshin<span>Business Development, Eurasia</span></li>
+          <li>Trevor Olsen<span>Controller</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="disp">News</h2>
+      <p class="lede"><a href="https://www.curelaboncology.com/company-news/" style="color:var(--green-ink)">All company news</a></p>
+    </div>
+    <div class="news">
+      <a href="https://www.curelaboncology.com/company-news/"><time datetime="2026-10-21">October 21, 2026</time><h3>CureLab appoints Markus Puhlmann, MD, MBA, to its Scientific Advisory Board</h3></a>
+      <a href="https://www.curelaboncology.com/company-news/"><time datetime="2026-10-12">October 12, 2026</time><h3>CureLab Oncology appoints Konstantinos Xynos, MD, MBA, to its Scientific Advisory Board</h3></a>
+      <a href="https://www.curelaboncology.com/company-news/"><time datetime="2026-08-31">August 31, 2026</time><h3>CureLab Oncology appoints Dr. Bruce N. Cronstein to its Scientific Advisory Board</h3></a>
+      <a href="https://www.curelaboncology.com/company-news/"><time datetime="2026-08-20">August 20, 2026</time><h3>CureLab Oncology appoints Dr. Paul Woodard to its Scientific Advisory Board</h3></a>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER -->
+<section id="partner">
+  <div class="wrap partner">
+    <div>
+      <h2 class="disp">Partner with us</h2>
+      <p class="lede" style="margin-top:24px">Elenagen doesn't compete with existing cancer drugs. It is meant to be used with them, which makes every oncology company a potential partner.</p>
+      <div class="contact">
+        <a class="btn" href="mailto:info@curelab.com">Email info@curelab.com</a>
+        <a class="btn ghost" href="tel:+16098411201">+1 609 841 1201</a>
+      </div>
+    </div>
+    <ul class="paths">
+      <li><b>Investment</b><span>Fund completion of Phase II in the United States.</span></li>
+      <li><b>Licensing</b><span>License Elenagen globally or for a region.</span></li>
+      <li><b>Combination studies</b><span>Test Elenagen with your targeted oncology agent.</span></li>
+      <li><b>Veterinary studies</b><span>Join pilot or pivotal studies in dogs and cats with cancer.</span></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/img/logo.png" alt="CureLab Oncology" width="900" height="294">
+    <nav>
+      <a href="#science">Science</a><a href="#pipeline">Pipeline</a><a href="#evidence">Clinical data</a><a href="#team">Team</a><a href="https://www.curelaboncology.com/careers/">Careers</a><a href="https://www.curelaboncology.com/legal/">Legal</a>
+    </nav>
+    <p class="fine">© 2026 CureLab Oncology, Inc. · Boston, Massachusetts. Elenagen is an investigational product and has not been approved by the FDA or any other regulatory authority.</p>
+  </div>
+</footer>
+
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const lerp=(a,b,t)=>a+(b-a)*t, clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const ease=t=>1-Math.pow(1-t,3);
+function fit(c,lw){const r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);c.width=Math.round(r.width*d);c.height=Math.round(r.height*d);const x=c.getContext('2d');const k=lw?r.width/lw:1;x.setTransform(d*k,0,0,d*k,0,0);return{x,w:r.width,h:r.height,k}}
+function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function whenVisible(el,cb,th=.15){const io=new IntersectionObserver(es=>es.forEach(e=>cb(e.isIntersecting)),{threshold:th});io.observe(el)}
+
+/* ---------- header: scroll progress + menu ---------- */
+const h=$('header'),prog=$('#prog');
+const onScroll=()=>{h.classList.toggle('scrolled',scrollY>8);const m=document.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${m>0?scrollY/m:0})`};
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+const mb=$('.menu-btn');
+mb.addEventListener('click',()=>{const o=h.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+$$('#menu a').forEach(a=>a.addEventListener('click',()=>{h.classList.remove('open');mb.setAttribute('aria-expanded','false')}));
+
+/* ---------- counters ---------- */
+function countUp(el,dur=1400){const to=parseFloat(el.dataset.to),dec=+(el.dataset.dec||0);if(RM){el.textContent=to.toFixed(dec);return}const t0=performance.now();const step=n=>{const p=clamp((n-t0)/dur,0,1);el.textContent=(to*ease(p)).toFixed(dec);if(p<1)requestAnimationFrame(step)};el.textContent=(0).toFixed(dec);requestAnimationFrame(step)}
+$$('.proof b,.facts b').forEach(b=>{const m=b.textContent.match(/^(\d+)(.*)$/);if(m){b.innerHTML=`<span class="count" data-to="${m[1]}">${m[1]}</span>${m[2]}`}});
+$$('.proof .count,.facts .count').forEach(el=>{let done=false;whenVisible(el,v=>{if(v&&!done){done=true;countUp(el,1200)}},.6)});
+
+/* ---------- hero entrance + PFS ---------- */
+requestAnimationFrame(()=>{document.documentElement.classList.add('ready');
+  setTimeout(()=>{$$('.fill').forEach(f=>f.style.width=f.dataset.w+'%');$$('.pfs .count').forEach(el=>countUp(el,1400));setTimeout(()=>$('.delta').classList.add('on'),RM?0:1500)},RM?0:500)});
+
+/* ---------- pipeline reveal ---------- */
+const pipe=$('.pipe');whenVisible(pipe,v=>{if(v)pipe.classList.add('in')},.25);
+
+/* ---------- hero: rotating supercoiled plasmid ---------- */
+(()=>{
+const c=$('#helix'),tag=$('#helixTag'),wrap=c.parentElement;if(!c)return;
+let g,raf=0,vis=true,yaw=.6,tilt=-.95,tx=0,ty=0,mx=0,my=0;
+const M=560,N=24,INS=[.12,1.05];
+const pts=[];for(let i=0;i<M;i++){const t=i/M*Math.PI*2;pts.push(t)}
+function resize(){g=fit(c)}
+resize();addEventListener('resize',resize);
+$('.hero').addEventListener('pointermove',e=>{const r=$('.hero').getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5});
+function frame(now){
+  const {x,w,h}=g;x.clearRect(0,0,w,h);
+  if(!RM)yaw+=.0032;mx=lerp(mx,tx,.05);my=lerp(my,ty,.05);
+  const a=yaw+mx*.9,p=tilt+my*.5,ca=Math.cos(a),sa=Math.sin(a),cp=Math.cos(p),sp=Math.sin(p);
+  const S=Math.min(w,h)*.34,cx=w*.5,cy=h*.40,F=3.4,items=[];
+  const proj=(X,Y,Z)=>{const x1=X*ca-Z*sa,z1=X*sa+Z*ca,y2=Y*cp-z1*sp,z2=Y*sp+z1*cp,f=F/(F+z2);return[cx+x1*f*S,cy+y2*f*S,z2,f]};
+  const ph=now*.0006;
+  let lab=null;
+  for(let i=0;i<M;i++){
+    const t=pts[i],ct=Math.cos(t),st=Math.sin(t);
+    const Cx=ct,Cy=.2*Math.sin(2*t),Cz=st,r=.11,q=N*t+ph;
+    const ins=t>INS[0]&&t<INS[1];
+    const A=proj(Cx+r*Math.cos(q)*ct,Cy+r*Math.sin(q),Cz+r*Math.cos(q)*st);
+    const B=proj(Cx-r*Math.cos(q)*ct,Cy-r*Math.sin(q),Cz-r*Math.cos(q)*st);
+    items.push({k:0,p:A,ins,s:0},{k:0,p:B,ins,s:1});
+    if(i%4===0)items.push({k:1,a:A,b:B,z:(A[2]+B[2])/2,ins});
+    if(Math.abs(t-.58)<.006)lab=proj(Cx,Cy,Cz);
+  }
+  items.sort((u,v)=>(v.k?v.z:v.p[2])-(u.k?u.z:u.p[2]));
+  for(const it of items){
+    const z=it.k?it.z:it.p[2],al=clamp(.25+.75*(1-(z+1.2)/2.4),.12,1);
+    x.globalAlpha=al;
+    if(it.k){x.strokeStyle=it.ins?'#A9D69C':'#D6DFD2';x.lineWidth=1.3;x.beginPath();x.moveTo(it.a[0],it.a[1]);x.lineTo(it.b[0],it.b[1]);x.stroke()}
+    else{x.fillStyle=it.ins?(it.s?'#7DBE69':'#55A23D'):(it.s?'#C5D3C0':'#97AE90');x.beginPath();x.arc(it.p[0],it.p[1],(it.ins?3.1:2.5)*it.p[3],0,7);x.fill()}
+  }
+  x.globalAlpha=1;
+  if(lab){const lx=lab[0],ly=lab[1],ox=clamp(lx+40,10,w-140),oy=clamp(ly-70,10,h-60);
+    x.strokeStyle='#17201A';x.lineWidth=1;x.beginPath();x.moveTo(lx,ly);x.lineTo(ox,oy+18);x.stroke();
+    x.fillStyle='#17201A';x.beginPath();x.arc(lx,ly,3,0,7);x.fill();
+    tag.style.transform=`translate(${ox}px,${oy}px)`;tag.style.opacity=1}
+  if(!RM&&vis)raf=requestAnimationFrame(frame);
+}
+whenVisible(wrap,v=>{vis=v;cancelAnimationFrame(raf);if(v)raf=requestAnimationFrame(frame)},0);
+document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(raf);if(!document.hidden&&vis)raf=requestAnimationFrame(frame)});
+requestAnimationFrame(frame);
+})();
+
+/* ---------- science: tumor microenvironment ---------- */
+(()=>{
+const c=$('#tme');if(!c)return;const L=600;let g=fit(c,L);addEventListener('resize',()=>g=fit(c,L));
+const R=rng(11),C=300;
+const fx={grade:0,stroma:0,inflam:0,immune:0},on={grade:0,stroma:0,inflam:0,immune:0};
+// tumor cells
+const cells=[];const NC=46;
+for(let i=0;i<NC;i++){const inv=i>=40,rad=inv?150+R()*70:135*Math.sqrt(R()),an=R()*7;cells.push({dx:C+Math.cos(an)*rad,dy:C+Math.sin(an)*rad,sz:12+R()*16,ph:R()*7,v:[...Array(9)].map(()=>R()*2-1),nj:[R()*2-1,R()*2-1],hit:0})}
+const hex=[];for(let y=-6;y<=6;y++)for(let x=-6;x<=6;x++){const px=C+(x+(y&1)*.5)*36,py=C+y*31;hex.push([px,py,Math.hypot(px-C,py-C)])}
+hex.sort((a,b)=>a[2]-b[2]);
+const byD=[...cells].sort((a,b)=>Math.hypot(a.dx-C,a.dy-C)-Math.hypot(b.dx-C,b.dy-C));
+byD.forEach((cl,i)=>{cl.ox=hex[i][0];cl.oy=hex[i][1]});
+// stroma fibers
+const fibers=[];for(let i=0;i<30;i++){const r0=165+R()*95,a0=R()*7,span=.35+R()*.7,pts=[];for(let k=0;k<=24;k++){const a=a0+span*k/24,rr=r0+Math.sin(k*.9+i)*6;pts.push([C+Math.cos(a)*rr,C+Math.sin(a)*rr])}fibers.push({pts,col:R()<.5})}
+// inflammatory particles
+const parts=[...Array(80)].map(()=>({x:R()*L,y:R()*L,vx:0,vy:0,r:2+R()*3,ph:R()*7}));
+// T cells
+const homes=[...Array(13)].map((_,i)=>{const a=i/13*Math.PI*2+.2;return[C+Math.cos(a)*285,C+Math.sin(a)*285]});
+const tcs=homes.map(hm=>({x:hm[0],y:hm[1],hx:hm[0],hy:hm[1],tg:null,ph:R()*7}));
+let mouse=null;
+c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();mouse=[(e.clientX-r.left)/r.width*L,(e.clientY-r.top)/r.height*L]});
+c.addEventListener('pointerleave',()=>mouse=null);
+const mix=(a,b,t)=>{const p=s=>[1,3,5].map(i=>parseInt(s.slice(i,i+2),16)),A=p(a),B=p(b);return`rgb(${A.map((v,i)=>Math.round(lerp(v,B[i],t))).join(',')})`};
+function draw(now){
+  const x=g.x,T=now*.001;
+  for(const k in fx)fx[k]=RM?on[k]:lerp(fx[k],on[k],.04);
+  x.clearRect(0,0,L,L);
+  // vignette tissue
+  const bg=x.createRadialGradient(C,C,40,C,C,420);bg.addColorStop(0,'#F7F3F1');bg.addColorStop(1,'#EEF2EC');x.fillStyle=bg;x.fillRect(0,0,L,L);
+  // stroma
+  x.lineCap='round';
+  for(const f of fibers){const n=Math.max(2,Math.round(f.pts.length*(.25+.75*fx.stroma)));x.strokeStyle=f.col?'#55A23D':'#97CB8F';x.globalAlpha=.12+.6*fx.stroma;x.lineWidth=f.col?2.4:1.6;x.beginPath();f.pts.slice(0,n).forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke()}
+  x.globalAlpha=1;
+  // inflammation
+  const iv=1-fx.inflam*.92;
+  for(const p of parts){p.vx+=(Math.random()-.5)*.12;p.vy+=(Math.random()-.5)*.12;
+    if(mouse){const dx=p.x-mouse[0],dy=p.y-mouse[1],d2=dx*dx+dy*dy;if(d2<6400){const f=(6400-d2)/6400*.6;p.vx+=dx/Math.sqrt(d2+1)*f;p.vy+=dy/Math.sqrt(d2+1)*f}}
+    p.vx*=.96;p.vy*=.96;p.x=(p.x+p.vx+L)%L;p.y=(p.y+p.vy+L)%L;
+    const a=iv*(.55+.45*Math.sin(T*2+p.ph));if(a<.02)continue;
+    x.globalAlpha=a*.25;x.fillStyle='#E4572E';x.beginPath();x.arc(p.x,p.y,p.r*2.6,0,7);x.fill();
+    x.globalAlpha=a;x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()}
+  x.globalAlpha=1;
+  // tumor cells
+  const d=1-fx.grade*.85;
+  for(const cl of cells){
+    const wob=RM?0:Math.sin(T*1.3+cl.ph)*1.6*d;
+    const px=lerp(cl.ox,cl.dx,d)+wob,py=lerp(cl.oy,cl.dy,d)+Math.cos(T+cl.ph)*1.2*d;
+    const r=lerp(15,cl.sz,d)*(1-cl.hit*.4);cl.px=px;cl.py=py;cl.r=r;
+    x.globalAlpha=1-cl.hit*.55;
+    x.beginPath();for(let k=0;k<=9;k++){const a=k/9*Math.PI*2,rr=r*(1+cl.v[k%9]*.26*d+.03*Math.sin(T*2+k));const X=px+Math.cos(a)*rr,Y=py+Math.sin(a)*rr;k?x.lineTo(X,Y):x.moveTo(X,Y)}
+    x.closePath();x.fillStyle=mix('#F2D4CC','#E39C93',d);x.fill();x.strokeStyle='rgba(150,70,80,.28)';x.lineWidth=1;x.stroke();
+    x.fillStyle=mix('#9A7CA0','#6A2F68',d);x.beginPath();x.arc(px+cl.nj[0]*r*.18*d,py+cl.nj[1]*r*.18*d,r*(.32+.24*d),0,7);x.fill()}
+  x.globalAlpha=1;
+  // T cells
+  const im=fx.immune;
+  for(const t of tcs){
+    if(im>.05){if(!t.tg||t.tg.hit>.98){let best=null,bd=1e9;for(const cl of cells){if(cl.hit>.98)continue;const dd=Math.hypot(cl.px-t.x,cl.py-t.y)+(cl.claim||0)*60;if(dd<bd){bd=dd;best=cl}}if(t.tg)t.tg.claim=Math.max(0,(t.tg.claim||1)-1);t.tg=best;if(best)best.claim=(best.claim||0)+1}
+      if(t.tg){const dx=t.tg.px-t.x,dy=t.tg.py-t.y,dd=Math.hypot(dx,dy),reach=t.tg.r+8;
+        if(dd>reach){const sp=(RM?dd:1.6*im);t.x+=dx/dd*Math.min(sp,dd-reach);t.y+=dy/dd*Math.min(sp,dd-reach)}else{t.tg.hit=Math.min(1,t.tg.hit+.0035*im);if(RM)t.tg.hit=.6;const a=T*1.5+t.ph;t.x=t.tg.px+Math.cos(a)*reach;t.y=t.tg.py+Math.sin(a)*reach}}}
+    else{if(t.tg){t.tg.claim=0;t.tg=null}t.x=lerp(t.x,t.hx,RM?1:.03);t.y=lerp(t.y,t.hy,RM?1:.03)}
+    const bob=RM?0:Math.sin(T*3+t.ph)*1.2;
+    x.globalAlpha=.45+.55*Math.max(im,.0);
+    x.fillStyle='#E6F2E2';x.strokeStyle='#3F7F2C';x.lineWidth=2.2;x.beginPath();x.arc(t.x,t.y+bob,8.5,0,7);x.fill();x.stroke();
+    x.fillStyle='#3F7F2C';x.beginPath();x.arc(t.x,t.y+bob,3.4,0,7);x.fill()}
+  x.globalAlpha=1;
+  if(on.immune===0)for(const cl of cells)cl.hit=Math.max(0,cl.hit-.003);
+}
+let raf=0,vis=false;
+function loop(n){draw(n);if(vis&&!RM)raf=requestAnimationFrame(loop)}
+const cards=$$('.fx');
+function set(k,v){on[k]=v?1:0;const b=cards.find(b=>b.dataset.fx===k);b.classList.toggle('lit',!!v);if(RM)draw(performance.now())}
+let timers=[],auto=true;
+function play(){timers.forEach(clearTimeout);timers=[];['grade','stroma','inflam','immune'].forEach((k,i)=>timers.push(setTimeout(()=>set(k,1),900+i*1700)))}
+$('#replay').addEventListener('click',()=>{for(const k in on)set(k,0);setTimeout(play,RM?0:900)});
+let started=false;
+whenVisible(c,v=>{vis=v;cancelAnimationFrame(raf);if(v){raf=requestAnimationFrame(loop);if(!started&&auto){started=true;play()}}},.35);
+draw(0);
+})();
+
+/* ---------- IP: dot-matrix patent map ---------- */
+(()=>{
+const c=$('#map');if(!c)return;
+const FAM={
+ onc:{g:['United States of America','United Kingdom','Germany','France','Italy','Spain','Netherlands','Belgium','Ireland','Luxembourg','Switzerland','Liechtenstein','Japan','South Korea','Singapore','Hong Kong','India','Australia','Canada','Mexico','Chile','Russia','Belarus'],p:['Brazil'],
+   txt:'<b>Oncology patents granted:</b> USA, UK, Germany, France, Italy, Spain, Netherlands, Belgium, Ireland, Luxembourg, Switzerland, Liechtenstein, Japan, South Korea, Singapore, Hong Kong, India, Australia, Canada, Mexico, Chile, Russia, Belarus. Applications pending in Brazil and the US.'},
+ inf:{g:['United States of America','United Kingdom','Germany','France','Netherlands','Belgium','Luxembourg','Switzerland','Liechtenstein','Monaco','Japan','South Korea','Singapore','Hong Kong','India','Australia','Canada','Mexico'],p:['China','Italy','Spain'],
+   txt:'<b>Anti-inflammation patents granted:</b> USA, UK, Germany, France, Netherlands, Belgium, Luxembourg, Switzerland, Liechtenstein, Monaco, Japan, South Korea, Singapore, Hong Kong, India, Australia, Canada, Mexico. Applications pending in China, Italy, Spain and the US.'}};
+const SMALL={'Singapore':[103.8,1.35],'Hong Kong':[114.17,22.3],'Liechtenstein':[9.55,47.16],'Monaco':[7.42,43.74],'Luxembourg':[6.13,49.6]};
+let fam='onc',t0=performance.now(),dots=[],marks=[],g,proj,step,raf=0,vis=false,hover=null;
+const tip=$('#mapTip'),ctry=$('.countries');
+function load(src){return new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+let world=null;
+async function init(){
+  try{await load('https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js');await load('https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js');
+  const topo=await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(r=>r.json());
+  world=topojson.feature(topo,topo.objects.countries).features.filter(f=>f.properties.name!=='Antarctica');build();}
+  catch(e){$('.map-wrap canvas').style.display='none'}
+}
+function build(){
+  g=fit(c);const W=g.w,H=g.h;
+  proj=d3.geoEquirectangular().scale(W/(2*Math.PI)*1.02).center([12,18]).translate([W/2,H/2]);
+  const off=document.createElement('canvas');off.width=Math.round(W);off.height=Math.round(H);const o=off.getContext('2d');const path=d3.geoPath(proj,o);
+  world.forEach((f,i)=>{o.fillStyle=`rgb(${(i+1)&255},${(i+1)>>8},0)`;o.beginPath();path(f);o.fill()});
+  const img=o.getImageData(0,0,off.width,off.height).data;
+  step=Math.max(4,W/160);dots=[];
+  for(let y=step/2;y<H;y+=step)for(let x=step/2;x<W;x+=step){const i=(Math.round(y)*off.width+Math.round(x))*4;if(img[i+3]===255){const id=img[i]+(img[i+1]<<8)-1;const f=world[id];if(f){let n=f.properties.name;if(n==='France'&&proj.invert([x,y])[0]<-20)n='French Guiana';dots.push({x,y,n})}}}
+  marks=Object.entries(SMALL).map(([n,ll])=>{const p=proj(ll);return{n,x:p[0],y:p[1]}});
+  draw(performance.now());
+}
+function stat(n){const F=FAM[fam];if(F.g.includes(n))return n==='United States of America'?'g':'g';if(F.p.includes(n))return'p';return''}
+const label=n=>n==='United States of America'?'United States':n;
+function draw(now){
+  if(!g)return;const x=g.x,W=g.w,H=g.h;x.clearRect(0,0,W,H);const el=RM?1e9:now-t0;
+  const r0=step*.26;
+  for(const d of dots){const s=stat(d.n);
+    if(!s){x.fillStyle='rgba(232,239,230,.16)';x.beginPath();x.arc(d.x,d.y,r0,0,7);x.fill();continue}
+    const p=clamp((el-d.x/W*1100)/420,0,1),e=ease(p),hv=hover===d.n?1.25:1;
+    if(s==='g'){x.fillStyle=`rgba(151,203,143,${.16+.84*e})`;x.beginPath();x.arc(d.x,d.y,(r0+(step*.14)*e+(p<1?Math.sin(p*Math.PI)*step*.2:0))*hv,0,7);x.fill()}
+    else{x.strokeStyle=`rgba(151,203,143,${.2+.7*e})`;x.lineWidth=1.2;x.beginPath();x.arc(d.x,d.y,r0*1.15*hv,0,7);x.stroke()}}
+  for(const m of marks){const s=stat(m.n);if(!s)continue;const p=clamp((el-m.x/W*1100)/420,0,1);
+    const pulse=RM?0:(now*.001+m.x*.01)%1.6/1.6;
+    x.strokeStyle=`rgba(151,203,143,${(1-pulse)*.8*p})`;x.lineWidth=1.2;x.beginPath();x.arc(m.x,m.y,step*.5+pulse*step*1.8,0,7);x.stroke();
+    x.fillStyle='#97CB8F';x.globalAlpha=p;x.beginPath();x.arc(m.x,m.y,step*.42,0,7);x.fill();x.globalAlpha=1}
+  if(vis&&!RM)raf=requestAnimationFrame(draw);
+}
+c.addEventListener('pointermove',e=>{if(!g)return;const r=c.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let best=null,bd=step*1.6;
+  for(const m of marks){const dd=Math.hypot(m.x-mx,m.y-my);if(dd<bd&&stat(m.n)){bd=dd;best=m.n}}
+  if(!best)for(const d of dots){const dd=Math.hypot(d.x-mx,d.y-my);if(dd<bd){bd=dd;best=d.n}}
+  hover=best;if(best){const s=stat(best);tip.textContent=label(best)+(s==='g'?' · granted':s==='p'?' · pending':'');tip.style.left=mx+'px';tip.style.top=my+'px';tip.style.opacity=1}else tip.style.opacity=0;if(RM)draw(0)});
+c.addEventListener('pointerleave',()=>{hover=null;tip.style.opacity=0});
+$$('.seg').forEach(b=>b.addEventListener('click',()=>{fam=b.dataset.fam;$$('.seg').forEach(o=>{o.classList.toggle('on',o===b);o.setAttribute('aria-pressed',o===b)});ctry.innerHTML=FAM[fam].txt;t0=performance.now();if(RM)draw(0)}));
+let inited=false;
+whenVisible(c,v=>{vis=v;if(v&&!inited){inited=true;t0=performance.now()+400;init()}cancelAnimationFrame(raf);if(v&&g)raf=requestAnimationFrame(draw)},.2);
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(world)build()},200)});
+})();
+})();
+</script>
+</body>
+</html>
